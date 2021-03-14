@@ -5,7 +5,6 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.ValidationException;
 
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class ValidacaoExceptionHandler {
@@ -47,12 +45,12 @@ public class ValidacaoExceptionHandler {
 		return new ResponseEntity<>(ved, HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(ResponseStatusException.class)
-	public ResponseEntity<StandardError> responseStatus(ResponseStatusException e, HttpServletRequest request) {
-
-		StandardError err = new StandardError(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage(),
-				request.getRequestURI());
-		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
-	}
+//	@ExceptionHandler(ResponseStatusException.class)
+//	public ResponseEntity<StandardError> responseStatus(ResponseStatusException e, HttpServletRequest request) {
+//
+//		StandardError err = new StandardError(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage(),
+//				request.getRequestURI());
+//		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
+//	}
 
 }

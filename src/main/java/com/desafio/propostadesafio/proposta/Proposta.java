@@ -90,6 +90,10 @@ public class Proposta {
 		return cartao;
 	}
 	
+	public PropostaStatus getStatus() {
+		return status;
+	}
+
 	public void adicionaNumeroCartao(String cartao) {
 		this.cartao = cartao;
 	}

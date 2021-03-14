@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +63,17 @@ public class PropostaController {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
 		}
+	}
+
+	@GetMapping(value = "/{id}")
+	@Transactional(readOnly = true)
+	public ResponseEntity<?> buscaProposta(@PathVariable("id") Long id) {
+		if(!propostaRepository.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Proposta não existe");			
+		}
+		PropostaResponse response = new PropostaResponse(propostaRepository.findById(id).get());
+		return ResponseEntity.ok(response);
+
 	}
 
 }
