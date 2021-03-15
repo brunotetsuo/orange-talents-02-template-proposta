@@ -2,6 +2,8 @@ package com.desafio.propostadesafio.proposta.excecoes;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class ValidacaoExceptionHandler {
+public class ExcecaoHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ValidacaoExceptionDto> validarMethodArgumentNotValid(MethodArgumentNotValidException ex) {
@@ -45,12 +47,13 @@ public class ValidacaoExceptionHandler {
 		return new ResponseEntity<>(ved, HttpStatus.BAD_REQUEST);
 	}
 
-//	@ExceptionHandler(ResponseStatusException.class)
-//	public ResponseEntity<StandardError> responseStatus(ResponseStatusException e, HttpServletRequest request) {
-//
-//		StandardError err = new StandardError(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage(),
-//				request.getRequestURI());
-//		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
-//	}
+	@ExceptionHandler(ApiErrorException.class)
+	public ResponseEntity<ErroPadronizado> apiErrorException(ApiErrorException apiErrorException) {
+		Collection<String> mensagens = new ArrayList<>();
+		mensagens.add(apiErrorException.getRazao());
+
+		ErroPadronizado erroPadronizado = new ErroPadronizado(mensagens);
+		return ResponseEntity.status(apiErrorException.getHttpStatus()).body(erroPadronizado);
+	}
 
 }

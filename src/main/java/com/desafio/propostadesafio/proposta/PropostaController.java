@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.desafio.propostadesafio.proposta.analise.AnaliseFeignClient;
 import com.desafio.propostadesafio.proposta.analise.AnaliseStatusRequest;
 import com.desafio.propostadesafio.proposta.analise.AnaliseStatusResponse;
+import com.desafio.propostadesafio.proposta.excecoes.ApiErrorException;
 
 import feign.FeignException;
 
@@ -38,8 +38,8 @@ public class PropostaController {
 	public ResponseEntity<?> postNovaProposta(@RequestBody @Valid PropostaRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		if (propostaRepository.existsByDocumento(request.getDocumento())) {
-			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-					"Já existe proposta para esse documento = " + request.getDocumento());
+			throw new ApiErrorException(HttpStatus.UNPROCESSABLE_ENTITY,
+					"Proposta já existe");
 		}
 		// grava no banco
 		Proposta novaProposta = request.toModel();
@@ -61,15 +61,15 @@ public class PropostaController {
 		} catch (FeignException.UnprocessableEntity e) {
 			return PropostaStatus.NAO_ELEGIVEL;
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
+			throw new ApiErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
 		}
 	}
 
 	@GetMapping(value = "/{id}")
 	@Transactional(readOnly = true)
 	public ResponseEntity<?> buscaProposta(@PathVariable("id") Long id) {
-		if(!propostaRepository.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Proposta não existe");			
+		if (!propostaRepository.existsById(id)) {
+			throw new ApiErrorException(HttpStatus.NOT_FOUND, "Proposta não existe");
 		}
 		PropostaResponse response = new PropostaResponse(propostaRepository.findById(id).get());
 		return ResponseEntity.ok(response);
