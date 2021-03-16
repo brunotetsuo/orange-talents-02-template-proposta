@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,6 +50,8 @@ public class Cartao {
 	private Proposta Proposta;
 	@OneToMany(mappedBy = "cartao")
 	private List<Biometria> biometrias = new ArrayList<>();
+	@Enumerated(EnumType.STRING)
+	private EstadoCartao estadoCartao;
 
 	@Deprecated
 	public Cartao() {
@@ -111,6 +115,18 @@ public class Cartao {
 
 	public Proposta getProposta() {
 		return Proposta;
+	}
+
+	public void adicionaBloqueio(Bloqueio bloqueio) {
+		this.bloqueios.add(bloqueio);
+	}
+
+	public EstadoCartao getEstadoCartao() {
+		return estadoCartao;
+	}
+
+	public void setEstadoCartao(EstadoCartao estadoCartao) {
+		this.estadoCartao = estadoCartao;
 	}
 
 }
