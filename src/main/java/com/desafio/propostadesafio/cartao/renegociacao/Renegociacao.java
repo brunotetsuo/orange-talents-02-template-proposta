@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.desafio.propostadesafio.cartao.Cartao;

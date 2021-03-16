@@ -19,6 +19,7 @@ public class CarteiraDigital {
 	@ManyToOne
 	private Cartao cartao;
 
+	@SuppressWarnings("unused")
 	@Deprecated
 	private CarteiraDigital() {
 	}

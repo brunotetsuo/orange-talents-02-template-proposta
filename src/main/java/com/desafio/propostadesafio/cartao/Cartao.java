@@ -1,15 +1,20 @@
 package com.desafio.propostadesafio.cartao;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.desafio.propostadesafio.cartao.aviso.AvisoViagem;
+import com.desafio.propostadesafio.cartao.biometria.Biometria;
 import com.desafio.propostadesafio.cartao.bloqueio.Bloqueio;
 import com.desafio.propostadesafio.cartao.carteira.CarteiraDigital;
 import com.desafio.propostadesafio.cartao.parcela.Parcela;
@@ -21,7 +26,9 @@ import com.desafio.propostadesafio.proposta.Proposta;
 public class Cartao {
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String numeroCartao;
 	private LocalDateTime emitidoEm;
 	private String titular;
 	@OneToMany(mappedBy = "cartao")
@@ -39,21 +46,31 @@ public class Cartao {
 	private Vencimento vencimento;
 	@OneToOne
 	private Proposta Proposta;
-	
+	@OneToMany(mappedBy = "cartao")
+	private List<Biometria> biometrias = new ArrayList<>();
+
 	@Deprecated
 	public Cartao() {
 	}
 
-	public Cartao(String id, LocalDateTime emitidoEm, String titular, Integer limite, Proposta proposta) {
-		this.id = id;
+	public Cartao(String numeroCartao, LocalDateTime emitidoEm, String titular, Integer limite, Proposta proposta) {
+		this.numeroCartao = numeroCartao;
 		this.emitidoEm = emitidoEm;
 		this.titular = titular;
 		this.limite = limite;
 		Proposta = proposta;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
+	}
+
+	public String getNumeroCartao() {
+		return numeroCartao;
+	}
+
+	public List<Biometria> getBiometrias() {
+		return biometrias;
 	}
 
 	public LocalDateTime getEmitidoEm() {

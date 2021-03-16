@@ -20,14 +20,14 @@ public class AdicionaCartaoPropostaElegivel {
 
 	@Autowired
 	private PropostaRepository propostaRepository;
-	
+
 	@Autowired
 	private CartaoRepository cartaoRepository;
 
 	@Autowired
 	private CartaoFeignClient cartaoFeignClient;
 
-	@Scheduled(initialDelay = 10000, fixedDelay = 10000)
+	@Scheduled(initialDelayString = "${periocidade.adiciona-cartao}", fixedDelayString = "${periocidade.adiciona-cartao}")
 	@Transactional
 	private void adicionaCartaoNaProposta() {
 		Page<Proposta> propostas = propostaRepository.findByStatusAndCartaoIsNull(PropostaStatus.ELEGIVEL,

@@ -3,8 +3,6 @@ package com.desafio.propostadesafio.cartao;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.desafio.propostadesafio.cartao.aviso.AvisoViagemResponse;
 import com.desafio.propostadesafio.cartao.bloqueio.BloqueioResponse;
 import com.desafio.propostadesafio.cartao.carteira.CarteiraDigitalResponse;
@@ -12,12 +10,8 @@ import com.desafio.propostadesafio.cartao.parcela.ParcelaResponse;
 import com.desafio.propostadesafio.cartao.renegociacao.RenegociacaoResponse;
 import com.desafio.propostadesafio.cartao.vencimento.VencimentoResponse;
 import com.desafio.propostadesafio.proposta.Proposta;
-import com.desafio.propostadesafio.proposta.PropostaRepository;
 
 public class CartaoResponse {
-
-	@Autowired
-	private PropostaRepository propostaRepository;
 
 	private String id;
 	private String emitidoEm;
@@ -31,20 +25,8 @@ public class CartaoResponse {
 	private VencimentoResponse vencimento;
 	private String idProposta;
 
-	public CartaoResponse(String id, String emitidoEm, String titular, Integer limite, String idProposta) {
-		this.id = id;
-		this.emitidoEm = emitidoEm;
-		this.titular = titular;
-		this.limite = limite;
-		this.idProposta = idProposta;
-	}
-
 	public Cartao toModel(Proposta proposta) {
 		return new Cartao(this.id, LocalDateTime.parse(this.emitidoEm), this.titular, this.limite, proposta);
-	}
-
-	public PropostaRepository getPropostaRepository() {
-		return propostaRepository;
 	}
 
 	public String getId() {
