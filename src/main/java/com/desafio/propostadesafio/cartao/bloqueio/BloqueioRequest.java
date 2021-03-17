@@ -7,12 +7,12 @@ public class BloqueioRequest {
 	@NotBlank
 	private String sistemaResponsavel;
 
-	public String getSistemaResponsavel() {
-		return sistemaResponsavel;
+	public BloqueioRequest(String sistemaResponsavel) {
+		this.sistemaResponsavel = sistemaResponsavel;
 	}
 
-	public void setSistemaResponsavel(String sistemaResponsavel) {
-		this.sistemaResponsavel = sistemaResponsavel;
+	public String getSistemaResponsavel() {
+		return sistemaResponsavel;
 	}
 
 }

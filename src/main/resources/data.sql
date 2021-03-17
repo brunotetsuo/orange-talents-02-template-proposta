@@ -1,3 +1,5 @@
+USE banco_proposta;
+
 INSERT INTO proposta (documento, email, endereco, instante_criado, nome, salario, status) VALUES ('04198721084', 'mariele@email.com', 'Rua indiana, 11', '2021-03-14 15:35:58.477438', 'Mariele do Teste Silva', '1800', 'ELEGIVEL');
 INSERT INTO proposta (documento, email, endereco, instante_criado, nome, salario, status) VALUES ('55819513061', 'joao@email.com', 'Rua indiana, 11', '2021-03-14 15:35:58.477438', 'Joao do Teste Silva', '1800', 'ELEGIVEL');
 INSERT INTO proposta (documento, email, endereco, instante_criado, nome, salario, status) VALUES ('36192211035', 'maria@email.com', 'Rua indiana, 11', '2021-03-14 15:35:58.477438', 'Maria do Teste Silva', '1800', 'NAO_ELEGIVEL');

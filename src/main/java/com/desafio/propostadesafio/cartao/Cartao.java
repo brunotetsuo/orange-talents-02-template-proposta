@@ -51,7 +51,7 @@ public class Cartao {
 	@OneToMany(mappedBy = "cartao")
 	private List<Biometria> biometrias = new ArrayList<>();
 	@Enumerated(EnumType.STRING)
-	private EstadoCartao estadoCartao;
+	private EstadoCartao estadoCartao = EstadoCartao.DESBLOQUEADO;
 
 	@Deprecated
 	public Cartao() {

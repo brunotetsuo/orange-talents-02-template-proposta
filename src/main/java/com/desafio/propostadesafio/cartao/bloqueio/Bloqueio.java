@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.desafio.propostadesafio.cartao.Cartao;
+import com.desafio.propostadesafio.cartao.EstadoCartao;
 
 @Entity
 public class Bloqueio {
@@ -22,19 +23,20 @@ public class Bloqueio {
 	@ManyToOne
 	private Cartao cartao;
 	private String ipCliente;
-	private String userAgent;
 
 	@Deprecated
 	public Bloqueio() {
 	}
 
-	public Bloqueio(String sistemaResponsavel, Cartao cartao, String ipCliente, String userAgent) {
+	public Bloqueio(String sistemaResponsavel, Cartao cartao, String ipCliente) {
 		this.bloqueadoEm = LocalDateTime.now();
 		this.sistemaResponsavel = sistemaResponsavel;
 		this.ativo = true;
 		this.cartao = cartao;
 		this.ipCliente = ipCliente;
-		this.userAgent = userAgent;
+
+		cartao.adicionaBloqueio(this);
+		cartao.setEstadoCartao(EstadoCartao.BLOQUEADO);
 	}
 
 	public Long getId() {
@@ -55,10 +57,6 @@ public class Bloqueio {
 
 	public String getIpCliente() {
 		return ipCliente;
-	}
-
-	public String getUserAgent() {
-		return userAgent;
 	}
 
 }

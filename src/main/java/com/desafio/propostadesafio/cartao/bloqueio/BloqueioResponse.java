@@ -2,20 +2,14 @@ package com.desafio.propostadesafio.cartao.bloqueio;
 
 public class BloqueioResponse {
 
-	private String bloqueadoEm;
-	private String sistemaResponsavel;
-	private boolean ativo;
+	private String resultado;
 
-	public String getBloqueadoEm() {
-		return bloqueadoEm;
+	public String getResultado() {
+		return resultado;
 	}
 
-	public String getSistemaResponsavel() {
-		return sistemaResponsavel;
-	}
-
-	public boolean isAtivo() {
-		return ativo;
+	public void setResultado(String resultado) {
+		this.resultado = resultado;
 	}
 
 }
