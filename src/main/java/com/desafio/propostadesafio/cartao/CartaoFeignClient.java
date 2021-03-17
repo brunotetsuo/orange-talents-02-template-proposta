@@ -8,6 +8,8 @@ import com.desafio.propostadesafio.cartao.aviso.AvisoViagemRequest;
 import com.desafio.propostadesafio.cartao.aviso.AvisoViagemResponse;
 import com.desafio.propostadesafio.cartao.bloqueio.BloqueioRequest;
 import com.desafio.propostadesafio.cartao.bloqueio.BloqueioResponse;
+import com.desafio.propostadesafio.cartao.carteira.CarteiraDigitalRequest;
+import com.desafio.propostadesafio.cartao.carteira.CarteiraDigitalResponse;
 
 @FeignClient(name = "cartaoFeignClient", url = "${cartaoFeignClient.targetUrl}")
 public interface CartaoFeignClient {
@@ -20,5 +22,8 @@ public interface CartaoFeignClient {
 	
 	@PostMapping(value = "/api/cartoes/{id}/avisos")
 	public AvisoViagemResponse avisoViagem(@PathVariable String id, AvisoViagemRequest request);
+	
+	@PostMapping(value = "/api/cartoes/{id}/carteiras")
+	public CarteiraDigitalResponse incluirCarteira(@PathVariable String id, CarteiraDigitalRequest request);
 
 }

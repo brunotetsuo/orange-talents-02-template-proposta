@@ -128,9 +128,13 @@ public class Cartao {
 	public void setEstadoCartao(EstadoCartao estadoCartao) {
 		this.estadoCartao = estadoCartao;
 	}
-	
+
 	public void adicionaAviso(AvisoViagem avisoViagem) {
 		this.avisos.add(avisoViagem);
+	}
+
+	public void adicionaCarteiraDigital(CarteiraDigital carteiraDigital) {
+		this.carteiras.add(carteiraDigital);
 	}
 
 }

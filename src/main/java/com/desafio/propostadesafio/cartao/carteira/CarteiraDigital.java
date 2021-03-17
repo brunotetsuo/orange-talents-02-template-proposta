@@ -3,6 +3,8 @@ package com.desafio.propostadesafio.cartao.carteira;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -12,10 +14,11 @@ import com.desafio.propostadesafio.cartao.Cartao;
 public class CarteiraDigital {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String email;
 	private LocalDateTime associadaEm;
-	private String emissor;
+	private String carteira;
 	@ManyToOne
 	private Cartao cartao;
 
@@ -24,11 +27,13 @@ public class CarteiraDigital {
 	private CarteiraDigital() {
 	}
 
-	public CarteiraDigital(Long id, String email, LocalDateTime associadaEm, String emissor) {
-		this.id = id;
+	public CarteiraDigital(String email, String carteira, Cartao cartao) {
 		this.email = email;
-		this.associadaEm = associadaEm;
-		this.emissor = emissor;
+		this.carteira = carteira;
+		this.cartao = cartao;
+		this.associadaEm = LocalDateTime.now();
+		
+		cartao.adicionaCarteiraDigital(this);
 	}
 
 	public Long getId() {
@@ -43,8 +48,8 @@ public class CarteiraDigital {
 		return associadaEm;
 	}
 
-	public String getEmissor() {
-		return emissor;
+	public String getCarteira() {
+		return carteira;
 	}
 
 }
