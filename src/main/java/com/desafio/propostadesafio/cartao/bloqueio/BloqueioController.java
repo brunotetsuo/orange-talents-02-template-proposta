@@ -47,6 +47,8 @@ public class BloqueioController {
 			cartaoFeignClient.bloqueio(cartao.getNumeroCartao(), new BloqueioRequest(userAgent));
 		} catch (FeignException e) {
 			throw new ApiErrorException(HttpStatus.UNPROCESSABLE_ENTITY, "Cartão já esta bloqueado");
+		} catch (Exception e) {
+			throw new ApiErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
 		}
 		Bloqueio bloqueio = new Bloqueio(userAgent, cartao, userIp.getRemoteAddr());
 		bloqueioRepository.save(bloqueio);

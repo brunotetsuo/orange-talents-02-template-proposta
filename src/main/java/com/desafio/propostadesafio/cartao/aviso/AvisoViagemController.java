@@ -49,6 +49,8 @@ public class AvisoViagemController {
 			cartaoFeignClient.avisoViagem(cartao.getNumeroCartao(), request);
 		} catch (FeignException e) {
 			throw new ApiErrorException(HttpStatus.UNPROCESSABLE_ENTITY, "Aviso de viagem já criado");
+		} catch (Exception e) {
+			throw new ApiErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
 		}
 		AvisoViagem aviso = new AvisoViagem(request.getValidoAte(), request.getDestino(), cartao,
 				userIp.getRemoteAddr(), agenteUsuario);

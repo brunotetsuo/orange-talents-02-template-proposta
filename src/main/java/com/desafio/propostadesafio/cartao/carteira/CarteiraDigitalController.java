@@ -50,6 +50,8 @@ public class CarteiraDigitalController {
 		} catch (FeignException e) {
 			throw new ApiErrorException(HttpStatus.UNPROCESSABLE_ENTITY,
 					"Cartão já incluido na carteira " + request.getCarteira());
+		} catch (Exception e) {
+			throw new ApiErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Aconteceu um erro inesperado!");
 		}
 		CarteiraDigital carteira = new CarteiraDigital(request.getEmail(), request.getCarteira(), cartao);
 		carteiraDigitalRepository.save(carteira);
