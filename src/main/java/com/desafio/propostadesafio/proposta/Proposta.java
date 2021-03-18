@@ -14,6 +14,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
+import org.springframework.security.crypto.encrypt.Encryptors;
+
 @Entity
 public class Proposta {
 
@@ -47,7 +49,7 @@ public class Proposta {
 			@NotBlank(message = "Nome esta em branco ou inválido") String nome,
 			@NotBlank(message = "Endereço esta em branco ou inválido") String endereco,
 			@Positive(message = "Deve ser valor positivo") BigDecimal salario) {
-		this.documento = documento;
+		this.setDocumento(Encryptors.text("abcabc", "cbacba").encrypt(documento));
 		this.email = email;
 		this.nome = nome;
 		this.endereco = endereco;
@@ -89,7 +91,7 @@ public class Proposta {
 	public String getCartao() {
 		return cartao;
 	}
-	
+
 	public PropostaStatus getStatus() {
 		return status;
 	}
@@ -97,4 +99,9 @@ public class Proposta {
 	public void adicionaNumeroCartao(String cartao) {
 		this.cartao = cartao;
 	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
 }

@@ -55,5 +55,14 @@ public class ExcecaoHandler {
 		ErroPadronizado erroPadronizado = new ErroPadronizado(mensagens);
 		return ResponseEntity.status(apiErrorException.getHttpStatus()).body(erroPadronizado);
 	}
+	
+	@ExceptionHandler(IllegalStateException.class)
+	public ResponseEntity<ErroPadronizado> illegalStateException(IllegalStateException illegalStateException) {
+		Collection<String> mensagens = new ArrayList<>();
+		mensagens.add(illegalStateException.getMessage());
+
+		ErroPadronizado erroPadronizado = new ErroPadronizado(mensagens);
+		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(erroPadronizado);
+	}
 
 }

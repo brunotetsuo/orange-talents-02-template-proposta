@@ -1,5 +1,7 @@
 package com.desafio.propostadesafio.cartao;
 
+import org.springframework.security.crypto.encrypt.Encryptors;
+
 import com.desafio.propostadesafio.proposta.Proposta;
 
 public class CartaoRequest {
@@ -9,7 +11,7 @@ public class CartaoRequest {
 	private String idProposta;
 
 	public CartaoRequest(Proposta proposta) {
-		this.documento = proposta.getDocumento();
+		this.documento = Encryptors.text("abcabc", "cbacba").decrypt(proposta.getDocumento());
 		this.nome = proposta.getNome();
 		this.idProposta = proposta.getId().toString();
 	}

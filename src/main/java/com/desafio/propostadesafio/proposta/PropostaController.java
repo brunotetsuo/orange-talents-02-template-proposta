@@ -37,12 +37,9 @@ public class PropostaController {
 	@Transactional
 	public ResponseEntity<?> postNovaProposta(@RequestBody @Valid PropostaRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
-		if (propostaRepository.existsByDocumento(request.getDocumento())) {
-			throw new ApiErrorException(HttpStatus.UNPROCESSABLE_ENTITY,
-					"Proposta já existe");
-		}
+
 		// grava no banco
-		Proposta novaProposta = request.toModel();
+		Proposta novaProposta = request.toModel(propostaRepository);
 		propostaRepository.save(novaProposta);
 
 		// envia para analise
