@@ -1,0 +1,67 @@
+{"properties": [
+  {
+    "name": "db.url",
+    "type": "java.lang.String",
+    "description": "A description for 'db.url'"
+  },
+  {
+    "name": "analiseFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'analiseFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "management.endpoints.prometheus.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.prometheus.enabled'"
+  },
+  {
+    "name": "periocidade.adiciona-cartao",
+    "type": "java.lang.String",
+    "description": "A description for 'periocidade.adiciona-cartao'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "cartaoFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'cartaoFeignClient.targetUrl'"
+  },
+  {
+    "name": "analiseFeignClient.targetUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'analiseFeignClient.targetUrl'"
+  },
+  {
+    "name": "db.url",
+    "type": "java.lang.String",
+    "description": "A description for 'db.url'"
+  }
+]}
